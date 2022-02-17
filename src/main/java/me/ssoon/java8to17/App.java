@@ -1,6 +1,10 @@
 package me.ssoon.java8to17;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Spliterator;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -28,5 +32,33 @@ public class App {
 		Bar bar = new DefaultBar("soohoon");
 		bar.printName();
 		bar.printNameUpperCase();
+
+		List<String> name = new ArrayList<>();
+		name.add("dduddu");
+		name.add("nana");
+		name.add("kkukku");
+		name.add("yooddu");
+		name.forEach(System.out::println);
+
+		for (String s : name) {
+			System.out.println(s);
+		}
+
+		Spliterator<String> spliterator = name.spliterator();
+		Spliterator<String> stringSpliterator = spliterator.trySplit();
+		while (spliterator.tryAdvance(System.out::println));
+		System.out.println("===========================");
+		while (stringSpliterator.tryAdvance(System.out::println));
+
+		name.removeIf(s -> s.startsWith("d"));
+		name.forEach(System.out::println);
+
+		name.add("dduddu");
+		name.sort(String::compareToIgnoreCase);
+		name.forEach(System.out::println);
+
+		Comparator<String> compareToIgnoreCase = String::compareToIgnoreCase;
+		name.sort(compareToIgnoreCase.reversed());
+		name.forEach(System.out::println);
 	}
 }
