@@ -5,9 +5,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
-import me.ssoon.Bar;
-import me.ssoon.DefaultBar;
-
 public class App {
 
 	public static void main(String[] args) {

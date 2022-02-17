@@ -1,4 +1,4 @@
-package me.ssoon;
+package me.ssoon.java8to17;
 
 public interface Bar {
 
