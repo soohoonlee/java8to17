@@ -5,6 +5,9 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
+import me.ssoon.Bar;
+import me.ssoon.DefaultBar;
+
 public class App {
 
 	public static void main(String[] args) {
@@ -24,5 +27,9 @@ public class App {
 		String[] names = {"dduddu", "nana", "kkukku", "yooddu"};
 		Arrays.sort(names, String::compareToIgnoreCase);
 		System.out.println("Arrays.toString(names) = " + Arrays.toString(names));
+
+		Bar bar = new DefaultBar("soohoon");
+		bar.printName();
+		bar.printNameUpperCase();
 	}
 }
