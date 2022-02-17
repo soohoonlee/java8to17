@@ -1,7 +1,10 @@
 package me.ssoon.java8to17;
 
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.IntConsumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -34,5 +37,37 @@ public class Foo {
 		Predicate<Integer> isEven = integer -> integer % 2 == 0;
 		System.out.println("isEven.test(10) = " + isEven.test(10));
 
+//		BiFunction<Integer, Integer, Integer> sum = (a, b) -> a + b;
+		BinaryOperator<Integer> sum = (a, b) -> a + b;
+
+		Foo foo = new Foo();
+		foo.run();
+	}
+
+	private void run() {
+		int baseNumber = 10;
+
+		// 로컬 클래스
+		class LocalClass {
+			void printBaseNumber() {
+				int baseNumber = 11;
+				System.out.println("baseNumber = " + baseNumber); // 11
+			}
+		}
+
+		// 익명 클래스
+		Consumer<Integer> integerConsumer = new Consumer<Integer>() {
+			@Override
+			public void accept(Integer baseNumber) {
+				System.out.println("baseNumber = " + baseNumber);
+			}
+		};
+
+		// 람다
+		IntConsumer printInt = x -> System.out.println(x + baseNumber);
+		printInt.accept(10);
+
+		// 로컬 클래스, 익명 클래스는 다른 scope
+		// 람다는 같은 scope
 	}
 }
