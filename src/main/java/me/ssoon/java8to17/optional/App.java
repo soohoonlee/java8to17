@@ -19,10 +19,18 @@ public class App {
 				.findFirst();
 //		optional.ifPresent(onlineClass -> System.out.println(onlineClass.getTitle()));
 
-		OnlineClass onlineClass = optional.orElse(createNewClass());
+//		OnlineClass onlineClass = optional.orElse(createNewClass());
+//		OnlineClass onlineClass = optional.orElseGet(App::createNewClass);
+//		OnlineClass onlineClass = optional.orElseThrow(IllegalArgumentException::new);
+//		System.out.println(onlineClass.getTitle());
+
+		final Optional<OnlineClass> onlineClass = optional.filter(oc -> !oc.isClosed());
+
+		final Optional<Progress> progress = optional.flatMap(OnlineClass::getProgress);
 	}
 
 	private static OnlineClass createNewClass() {
-		return new OnlineClass(6, "new class", true);
+		System.out.println("create new online class");
+		return new OnlineClass(6, "new class", false);
 	}
 }
